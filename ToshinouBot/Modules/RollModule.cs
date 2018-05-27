@@ -16,7 +16,13 @@ namespace ToshinouBot.Modules
         [Command("Roll")]
         public async Task Roll(int param)
         {
-            await this.ReplyAsync(Random.getRandomInt(1, param).ToString());
+            if (param < 1) {
+                await this.ReplyAsync("Error: Number must be positive");
+            }
+            else {
+                await this.ReplyAsync(Random.getRandomInt(1, param).ToString());
+            }
+            
         }
     }
 }

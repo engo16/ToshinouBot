@@ -38,7 +38,7 @@ namespace ToshinouBot
 
             // IoC pls D:
             MainHandler = new MainHandler(_client, new DarkOrbitService());
-            await _client.SetGameAsync(null);
+            await _client.SetGameAsync("Online");
 
             await _client.LoginAsync(TokenType.Bot, _config["token"]);
             await _client.StartAsync();
@@ -60,6 +60,7 @@ namespace ToshinouBot
                 // Extra
                 .AddSingleton(_config)
                 // Add additional services here...
+                .AddSingleton<RandomService>()
                 .BuildServiceProvider();
         }
 

@@ -16,10 +16,9 @@ namespace ToshinouBot.Modules
             if (Branch == "master") {
                 embed.AddInlineField("Master", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
             } else if (Branch == "beta") {
-                embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta");
+                embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta").WithFooter("WARNING: This is not a stable build, recommended to use Master");
             } else {
                 embed.AddInlineField("Master (Recommended)", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
-                embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta");
             }
             embed.Color = Color.Green;
 

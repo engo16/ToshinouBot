@@ -27,8 +27,11 @@ namespace ToshinouBot.Controllers
             {
                 var updated = await this.darkOrbitService.CheckUpdateAsync();
 
-                if (updated)
+                if (updated) {
                     await this.SendMessage("@everyone Darkorbit pushed a new update. Bot is offline!", Toshinou.GeneralNews);
+                    await Client.SetGameAsync("Offline");
+                }
+                    
             }, null, 5000, 1000 * 60 * 5); // Checks every 5 mins
         }
 

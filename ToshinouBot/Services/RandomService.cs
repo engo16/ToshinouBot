@@ -7,7 +7,7 @@ namespace ToshinouBot.Services
         private Random rnd = new Random();
 
         public int getRandomInt(int start, int end) {
-            return rnd.Next(start, end);
+            return rnd.Next(start, end + 1);
         }
     }
 }

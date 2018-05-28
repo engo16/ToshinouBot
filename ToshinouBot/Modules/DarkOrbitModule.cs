@@ -24,12 +24,12 @@ namespace ToshinouBot.Modules
             var updated = await this.darkOrbitService.CheckUpdateAsync();
             if (updated) {
                 IMessageChannel channel = Context.Client.GetChannel((ulong)Toshinou.GeneralNews) as IMessageChannel;
-                await channel.SendMessageAsync("@everyone Darkorbit pushed a new update. Bot is offline!");
-                await this.ReplyAsync("A new game version has been released! Fucking cyka blyat bugpoint");
+                await channel.SendMessageAsync("@everyone Darkorbit pushed a new update. Bot is **Offline**!");
+                await this.ReplyAsync("Please be patient while the Developers are working on the update!");
                 await Context.Client.SetGameAsync("Offline");
             }
             else {
-                await this.ReplyAsync("The game version is the same.");
+                await this.ReplyAsync("Bot Status: **Online!**");
             }
                 
             

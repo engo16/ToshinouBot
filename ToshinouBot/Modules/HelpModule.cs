@@ -10,6 +10,7 @@ namespace ToshinouBot.Modules
         public async Task Help()
         {
             var embed = new Discord.EmbedBuilder();
+            embed.AddField("!help", "Will display list of commands!");
             embed.AddField("!info", "Will display Smart Toshinou info!");
             embed.AddField("!checkUpdate", "Will display the status of the bot!");
             embed.AddField("!github", "Will link the Github!");

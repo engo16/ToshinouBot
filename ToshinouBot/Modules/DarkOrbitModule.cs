@@ -16,6 +16,7 @@ namespace ToshinouBot.Modules
         }
 
         [Command("checkUpdate", RunMode=RunMode.Async)]
+        [RequireUserPermission(GuildPermission.Administrator)]
         public async Task CheckUpdate()
         {
             var updated = await this.darkOrbitService.CheckUpdateAsync();

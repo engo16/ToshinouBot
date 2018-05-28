@@ -11,7 +11,7 @@ namespace ToshinouBot.Modules
         {
             var embed = new Discord.EmbedBuilder();
             string Branch = branch.ToLower();
-            embed.WithTitle("Github");
+            //embed.WithTitle("Github");
 
             if (Branch == "master") {
                 embed.AddInlineField("Master", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
@@ -21,8 +21,9 @@ namespace ToshinouBot.Modules
                 embed.AddInlineField("Master (Recommended)", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
                 embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta");
             }
-            embed.Color = Color.Green;
 
+            embed.Color = Color.Green;
+            embed.WithAuthor("Smart Toshinou | Github", "", ""); // Name, IconURL, URL(???)
             await ReplyAsync("", false, embed);
         }
     }

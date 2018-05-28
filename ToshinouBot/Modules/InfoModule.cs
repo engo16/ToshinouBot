@@ -8,6 +8,6 @@ namespace ToshinouBot.Modules
     [Command("info")]
     public Task Info()
         => ReplyAsync(
-            $"Hello, I am a bot called {Context.Client.CurrentUser.Username} written in Discord.Net 1.0\n");
+            $"Hello, I am a bot called **{Context.Client.CurrentUser.Username}** written in Discord.Net v.1.0.2!\n");
     }
 }

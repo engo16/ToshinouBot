@@ -1,17 +1,14 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Net;
 using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ToshinouBot.Services
 {
     public class DarkOrbitService
     {
-        private string Md5Folder = "md5Checks";
+        private const string Md5Folder = "md5Checks";
 
         public async Task<bool> CheckUpdateAsync()
         {
@@ -23,7 +20,7 @@ namespace ToshinouBot.Services
                 var md5 = await this.GetMd5(filename);
                 File.Delete(filename);
 
-                var file = Path.Combine(this.Md5Folder, md5);
+                var file = Path.Combine(Md5Folder, md5);
                 var directory = Path.GetDirectoryName(file);
                 if (!Directory.Exists(directory)) Directory.CreateDirectory(directory);
 

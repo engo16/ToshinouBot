@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using Discord;
@@ -26,12 +25,10 @@ namespace ToshinouBot.Controllers
             this.updateTimer = new Timer(async (state) =>
             {
                 var updated = await this.darkOrbitService.CheckUpdateAsync();
+                if (!updated) return; // if not updated -> do nothing
 
-                if (updated) {
-                    await this.SendMessage("@everyone Darkorbit pushed a new update. Bot is **Offline!**\nPlease be patient while the Developers are working on the update!", Toshinou.GeneralNews);
-                    await Client.SetGameAsync("Offline");
-                }
-                    
+                await this.SendMessage("@everyone Darkorbit pushed a new update. Bot is **Offline!**\nPlease be patient while the Developers are working on the update!", Toshinou.GeneralNews);
+                await Client.SetGameAsync("Offline");
             }, null, 5000, 1000 * 60 * 5); // Checks every 5 mins
         }
 

@@ -7,8 +7,6 @@ using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using ToshinouBot.Services;
-using System.Linq;
-using System.Collections.Generic;
 using ToshinouBot.Controllers;
 
 namespace ToshinouBot

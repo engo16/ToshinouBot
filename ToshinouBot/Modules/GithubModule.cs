@@ -10,16 +10,21 @@ namespace ToshinouBot.Modules
         public async Task Github(string branch = "")
         {
             var embed = new Discord.EmbedBuilder();
-            string Branch = branch.ToLower();
+            branch = branch.ToLower();
             //embed.WithTitle("Github");
 
-            if (Branch == "master") {
-                embed.AddInlineField("Master", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
-            } else if (Branch == "beta") {
-                embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta").WithFooter("WARNING: This is not a stable build, recommended to use Master");
-            } else {
-                embed.AddInlineField("Master (Recommended)", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
-                embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta");
+            switch (branch)
+            {
+                case "master":
+                    embed.AddInlineField("Master", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
+                    break;
+                case "beta":
+                    embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta").WithFooter("WARNING: This is not a stable build, recommended to use Master");
+                    break;
+                default:
+                    embed.AddInlineField("Master (Recommended)", "https://github.com/Gagong/Toshinou-Revamped/tree/master");
+                    embed.AddInlineField("Beta", "https://github.com/Gagong/Toshinou-Revamped/tree/beta");
+                    break;
             }
 
             embed.Color = Color.Green;

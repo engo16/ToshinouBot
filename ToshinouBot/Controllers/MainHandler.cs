@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Discord.WebSocket;
 using Discord;
@@ -26,19 +25,35 @@ namespace ToshinouBot.Controllers
             this.updateTimer = new Timer(async (state) =>
             {
                 var updated = await this.darkOrbitService.CheckUpdateAsync();
+                if (!updated) return; // if not updated -> do nothing
 
-                if (updated) {
-                    await this.SendMessage("@everyone Darkorbit pushed a new update. Bot is **Offline!**\nPlease be patient while the Developers are working on the update!", Toshinou.GeneralNews);
-                    await Client.SetGameAsync("Offline");
-                }
-                    
+                await this.SendMessage("@everyone Darkorbit pushed a new update. Bot is **Offline!**\nPlease be patient while the Developers are working on the update!", Toshinou.GeneralNews);
+                await Client.SetGameAsync("Offline");
             }, null, 5000, 1000 * 60 * 5); // Checks every 5 mins
+
+            var thread = new Thread(async () =>
+            {
+                await this.HandleInput();
+            });
+            thread.Start();
         }
 
         private async Task SendMessage(string message, Toshinou channel)
         {
             if(this.Client.GetChannel((ulong)channel) is IMessageChannel txtChannel)
                 await txtChannel.SendMessageAsync(message);
+        }
+
+        private async Task<string> GetConsoleInputAsync()
+        {
+            return await Task.Run(() => Console.ReadLine());
+        }
+
+        private async Task HandleInput()
+        {
+            var message = await this.GetConsoleInputAsync();
+            await this.SendMessage(message, Toshinou.GeneralEn);
+            await this.HandleInput();
         }
 
         private async Task OnReadyUpdateBrahDuh() {

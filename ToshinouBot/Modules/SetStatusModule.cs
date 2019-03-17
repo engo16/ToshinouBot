@@ -9,17 +9,21 @@ namespace ToshinouBot.Modules
         [RequireUserPermission(Discord.GuildPermission.Administrator)]
         public async Task SetStatus(string param)
         {
-            string status = param.ToLower();
-            if (status == "offline") {
-                await Context.Client.SetGameAsync("Offline");
-                await this.ReplyAsync("Set status to: **Offline!**");
-            } else if (status == "online") {
-                await Context.Client.SetGameAsync("Online");
-                await this.ReplyAsync("Set status to: **Online!**");
-            } else {
-                await this.ReplyAsync("Error: Invalid parameter; \nAccepts: Offline, Online");
+            var status = param.ToLower();
+            switch (status)
+            {
+                case "offline":
+                    await Context.Client.SetGameAsync("Offline");
+                    await this.ReplyAsync("Set status to: **Offline!**");
+                    break;
+                case "online":
+                    await Context.Client.SetGameAsync("Online");
+                    await this.ReplyAsync("Set status to: **Online!**");
+                    break;
+                default:
+                    await this.ReplyAsync("Error: Invalid parameter; \nAccepts: Offline, Online");
+                    break;
             }
-            
         }
     }
 }
